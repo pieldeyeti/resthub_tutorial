@@ -7,17 +7,17 @@ import org.resthub.web.controller.RepositoryBasedRestController;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import pieldeyeti.tutorialresthub.model.Sample;
-import pieldeyeti.tutorialresthub.repository.SampleRepository;
+import pieldeyeti.tutorialresthub.model.Task;
+import pieldeyeti.tutorialresthub.repository.TaskRepository;
 
 @Controller
-@RequestMapping(value = "/api/sample")
-public class SampleController extends RepositoryBasedRestController<Sample, Long, SampleRepository> {
+@RequestMapping(value = "/api/task")
+public class TaskController extends RepositoryBasedRestController<Task, Long, TaskRepository> {
 
     @Inject
-    @Named("sampleRepository")
+    @Named("taskRepository")
     @Override
-    public void setRepository(SampleRepository repository) {
+    public void setRepository(TaskRepository repository) {
         this.repository = repository;
     }
 }
