@@ -18,7 +18,7 @@ public class TaskInitializer {
     @PostInitialize
     public void init() {
         taskRepository.save(new Task("testTask1"));
-        taskRepository.save(new Task("testTask1"));
-        taskRepository.save(new Task("testTask1"));
+        taskRepository.save(new Task("testTask2"));
+        taskRepository.save(new Task("testTask3"));
     }
 }

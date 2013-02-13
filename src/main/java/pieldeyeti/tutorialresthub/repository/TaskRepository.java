@@ -6,4 +6,6 @@ import pieldeyeti.tutorialresthub.model.Task;
 
 public interface TaskRepository extends JpaRepository<Task, Long> {
 
+    public Task findByTitle(String title);
+
 }
