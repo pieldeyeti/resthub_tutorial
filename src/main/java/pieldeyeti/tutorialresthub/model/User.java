@@ -2,10 +2,15 @@ package pieldeyeti.tutorialresthub.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import java.util.List;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Pattern;
+import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 public class User {
@@ -14,6 +19,7 @@ public class User {
     private String name;
     private String email;
     private List<Task> tasks;
+    private Address address;
 
     public User() {
         super();
@@ -29,7 +35,6 @@ public class User {
         this.name = name;
         this.email = email;
     }
-
     
     @Id
     @GeneratedValue
@@ -41,6 +46,8 @@ public class User {
         this.id = id;
     }
 
+    @NotNull
+    @NotEmpty
     public String getName() {
         return name;
     }
@@ -49,6 +56,8 @@ public class User {
         this.name = name;
     }
 
+    @NotNull
+    @Pattern(regexp = ".+@.+\\.[a-z]+")
     public String getEmail() {
         return email;
     }
@@ -67,6 +76,16 @@ public class User {
         this.tasks = tasks;
     }
 
+    @Valid
+    @Embedded
+    public Address getAddress() {
+        return address;
+    }
+
+    public void setAddress(Address address) {
+        this.address = address;
+    }
+    
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

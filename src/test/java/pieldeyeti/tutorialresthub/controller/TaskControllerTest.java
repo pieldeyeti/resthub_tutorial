@@ -23,11 +23,11 @@ public class TaskControllerTest extends AbstractWebTest {
 
     @Test
     public void testAffectTaskToUser() {
-        Task task = this.request("api/task").xmlPost(new Task("new Task")).resource(Task.class);
-        User user = this.request("api/user").xmlPost(new User("new User")).resource(User.class);
+        Task task = this.request("api/task").xmlPost(new Task("task1")).resource(Task.class);
+        User user = this.request("api/user").xmlPost(new User("user1", "user1@test.org")).resource(User.class);
         String responseBody = this.request("api/task/" + task.getId() + "/user/" + user.getId()).put("").getBody();
         Assertions.assertThat(responseBody).isNotEmpty();
-        Assertions.assertThat(responseBody).contains("new Task");
-        Assertions.assertThat(responseBody).contains("new User");
+        Assertions.assertThat(responseBody).contains("task1");
+        Assertions.assertThat(responseBody).contains("user1");
     }
 }
